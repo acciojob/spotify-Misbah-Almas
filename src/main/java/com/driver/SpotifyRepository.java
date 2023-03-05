@@ -212,8 +212,8 @@ public class SpotifyRepository {
     }
 
     public Song likeSong(String mobile, String songTitle) throws Exception {
-        User user = null;
-        Song song = null;
+        User user = new User();
+        Song song = new Song();
         boolean flagUser = false;
         for(User itr : users){
             if(itr.getMobile().equals(mobile)){
@@ -246,7 +246,7 @@ public class SpotifyRepository {
                 userList.add(user);
                 song.setLikes(song.getLikes()+1);
 
-                Album album = null;
+                Album album = new Album();
                 for(Album albumItr : albumSongMap.keySet()){
                     if(albumSongMap.get(albumItr).contains(song)){
                         album = albumItr;
@@ -254,7 +254,7 @@ public class SpotifyRepository {
                     }
                 }
 
-                Artist artist = null;
+                Artist artist = new Artist();
                 for(Artist artistItr : artistAlbumMap.keySet()){
                     if(artistAlbumMap.get(artistItr).contains(album)){
                         artist = artistItr;
@@ -269,8 +269,8 @@ public class SpotifyRepository {
     }
 
     public String mostPopularArtist() {
-        int max = -1;
-        String name = null;
+        int max = Integer.MIN_VALUE;
+        String name = "";
         for(Artist artist : artists){
             if(artist.getLikes() > max){
                 max = artist.getLikes();
@@ -281,8 +281,8 @@ public class SpotifyRepository {
     }
 
     public String mostPopularSong() {
-        int max = -1;
-        String title = null;
+        int max = Integer.MIN_VALUE;
+        String title = "";
         for(Song song : songs){
             if(song.getLikes() > max){
                 max = song.getLikes();
