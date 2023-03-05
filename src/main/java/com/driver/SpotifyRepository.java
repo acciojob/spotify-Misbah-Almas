@@ -244,6 +244,7 @@ public class SpotifyRepository {
             List<User> userList = songLikeMap.getOrDefault(song, new ArrayList<User>());
             if(!userList.contains(user)){
                 userList.add(user);
+                songLikeMap.put(song, userList);
                 song.setLikes(song.getLikes()+1);
 
                 Album album = new Album();
